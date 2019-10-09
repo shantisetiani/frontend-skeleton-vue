@@ -1,4 +1,6 @@
-# antd-demo
+# Frontend Dashboard Skeleton
+
+This is skeleton based on VueJs for building web dashboard. This project implements [Ant Design System](https://vue.ant.design/).
 
 ## Project setup
 ```
