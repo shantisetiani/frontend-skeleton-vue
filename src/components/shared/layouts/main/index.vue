@@ -1,6 +1,6 @@
 <template>
   <a-layout id="components-layout-demo-fixed-sider">
-    <Sidebar :collapsed="state.collapsed" :onClose="onClose" />
+    <Sidebar :collapsed="state.collapsed" :onClose="onClose" :logout="logout" />
     <a-layout>
       <Header title="Dashboard" :showDrawer="showDrawer" />
       <a-layout-content class="main-content">
@@ -18,6 +18,7 @@
   import Sidebar from "../sidebar";
   import Dashboard from "../../../Dashboard.vue";
   import PropTypes from 'vue-prop-types';
+  import { MENU } from "../../../../config/menu";
 
   export default {
     name: 'Main',
@@ -25,6 +26,9 @@
       Header,
       Sidebar,
       Dashboard
+    },
+    props: {
+      history: Object
     },
     data() {
       return {
@@ -37,25 +41,17 @@
         },
       }
     },
-    mounted: function () {
-      this.$nextTick(function () {
-        this.updateWindowDimensions();
-        window.addEventListener("resize", this.updateWindowDimensions);
-      })
-    },
-    beforeDestroy: function () {
-      window.removeEventListener("resize", this.updateWindowDimensions);
-    },
     methods: {
       showDrawer() {
-        this.state.collapsed = true
+        this.state.collapsed = true;
       },
       onClose() {
         this.state.collapsed = false
       },
-      updateWindowDimensions() {
-        this.state.height = window.innerHeight - 64;
-      },
+      logout() {
+        // this.props.history.replace(`${MENU.LOGIN}?isLogout=true`);
+        this.$router.push(MENU.LOGIN)
+      }
     },
   }
 </script>

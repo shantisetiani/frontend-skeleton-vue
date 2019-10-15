@@ -47,12 +47,6 @@
       window.removeEventListener("resize", this.updateWindowDimensions);
     },
     methods: {
-      showDrawer() {
-        this.state.collapsed = true
-      },
-      onClose() {
-        this.state.collapsed = false
-      },
       updateWindowDimensions() {
         this.state.height = window.innerHeight - 64;
       },

@@ -16,9 +16,9 @@
         @click=""
       >
         <a-menu-item key="1">
-          Dashboard
+          <router-link to="/dashboard">Dashboard</router-link>
         </a-menu-item>
-        <a-menu-item key="2">
+        <a-menu-item key="2" @click="logout">
           Logout
         </a-menu-item>
       </a-menu>
@@ -32,7 +32,8 @@
     name: 'Sidebar',
     props: {
       collapsed: Boolean,
-      onClose: { type: Function }
+      onClose: { type: Function },
+      logout: { type: Function }
     }
   }
 </script>
