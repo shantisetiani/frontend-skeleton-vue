@@ -1,11 +1,23 @@
 import { MENU } from "../config/menu";
-import Login from "../components/users/login/index.vue"
-import Dashboard from "../components/Dashboard.vue";
+import VueRouter from "vue-router";
+import { CONFIG_COOKIES } from "../config/cookies";
+import { getCookies } from "../utils/cookies";
+
+import {AUTH_ROUTES} from "./auth"
+import {DASHBOARD_ROUTES} from "./dashboard"
 
 const routes = [
-    { path: MENU.HOMEPAGE, component: Login },
-    { path: MENU.LOGIN, component: Login },
-    { path: MENU.DASHBOARD, component: Dashboard },
+    ...AUTH_ROUTES,
+    ...DASHBOARD_ROUTES
 ];
 
-export default routes;
+const router = new VueRouter({routes});
+router.beforeEach((to, from, next) => {
+    if (to.meta.auth && !getCookies(CONFIG_COOKIES.TOKEN)) {
+        next(MENU.LOGIN);
+    }else{
+        next();
+    }
+})
+
+export default router;

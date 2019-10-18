@@ -17,8 +17,8 @@
   import Header from "../header";
   import Sidebar from "../sidebar";
   import Dashboard from "../../../Dashboard.vue";
-  import PropTypes from 'vue-prop-types';
   import { MENU } from "../../../../config/menu";
+  import { clearCookies } from "../../../../utils/cookies";
 
   export default {
     name: 'Main',
@@ -26,9 +26,6 @@
       Header,
       Sidebar,
       Dashboard
-    },
-    props: {
-      history: Object
     },
     data() {
       return {
@@ -49,7 +46,7 @@
         this.state.collapsed = false
       },
       logout() {
-        // this.props.history.replace(`${MENU.LOGIN}?isLogout=true`);
+        clearCookies();
         this.$router.push(MENU.LOGIN)
       }
     },

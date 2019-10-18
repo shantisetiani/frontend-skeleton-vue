@@ -14,12 +14,11 @@
     import Logo from "../../../assets/logo.png";
     import FormLogin from "./form.vue";
     import { MENU } from "../../../config/menu";
+    import { clearCookies, getCookies } from "../../../utils/cookies";
+    import { CONFIG_COOKIES } from "../../../config/cookies";
 
     export default {
         name: 'Login',
-        props: {
-            history: Object
-        },
         components: {
             FormLogin
         },
@@ -32,8 +31,7 @@
         },
         mounted: function () {
             this.$nextTick(function () {
-                console.log(MENU);
-                console.log(this["_props"]);
+                const token = getCookies(CONFIG_COOKIES.TOKEN);
             })
         }
     }

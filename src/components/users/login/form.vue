@@ -33,6 +33,7 @@
             <a-button
                 html-type="submit"
                 type="primary"
+                :loading="state.loading"
             >
                 LOGIN
             </a-button>
@@ -43,6 +44,8 @@
 
 <script>
     import { MENU } from "../../../config/menu";
+    import { setCookies } from "../../../utils/cookies";
+    import { CONFIG_COOKIES } from "../../../config/cookies";
 
     export default {
         name: 'FormLogin',
@@ -51,7 +54,7 @@
                 state: {
                     username: "",
                     password: "",
-                    //viewPassword: false,
+                    viewPassword: false,
                     passwordType: "password",
                     loading: false
                 },
@@ -62,13 +65,14 @@
                 this.state[e.target.name] = e.target.value;
             },
             viewPassword() {
-                //this.state.viewPassword = !this.state.viewPassword;
-                this.state.passwordType == "password" ?
-                    this.state.passwordType = "text"
-                    :
-                    this.state.passwordType = "password"
+                this.state.viewPassword = !this.state.viewPassword;
+                this.state.passwordType = this.state.viewPassword ? "text" : "password";
             },
             signIn() {
+                this.state.loading = true;
+                setCookies(CONFIG_COOKIES.FULLNAME, "dummy");
+                setCookies(CONFIG_COOKIES.TOKEN, "dummy");
+                this.state.loading = false;
                 this.$router.push(MENU.DASHBOARD)
             }
         }
