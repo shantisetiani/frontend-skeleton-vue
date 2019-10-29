@@ -1,5 +1,5 @@
 <template>
-  <Main>
+  <Main title="Dashboard">
     <template v-slot:content>
       <div id="dashboard-container" :style="{ height: state.height + 'px' }">
         <div class="dashboard-container-mask">

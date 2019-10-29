@@ -2,7 +2,7 @@
   <a-layout id="components-layout-demo-fixed-sider">
     <Sidebar :collapsed="state.collapsed" :onClose="onClose" :logout="logout" />
     <a-layout>
-      <Header title="Dashboard" :showDrawer="showDrawer" />
+      <Header :title="title" :showDrawer="showDrawer" />
       <a-layout-content class="main-content">
         <slot name="content" />
       </a-layout-content>
@@ -26,6 +26,9 @@
       Header,
       Sidebar,
       Dashboard
+    },
+    props: {
+      title: String
     },
     data() {
       return {
